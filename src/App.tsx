@@ -2,8 +2,10 @@ import './App.css'
 import './shopping-list'
 import ShoppingList from './shopping-list'
 
-export default function App() {
+import { AuthForm } from './auth'
 
+
+export default function App() {
   return (
     <>
       <NavBar />
@@ -13,7 +15,6 @@ export default function App() {
   )
 }
 
-// export default App
 export function NavBar() {
   return (
     <nav id='navBar'>
@@ -27,9 +28,11 @@ export function NavBar() {
 }
 
 export function MainContent() {
+
   return (
     <main>
       <ShoppingList />
+      <AuthForm />
     </main>
   )
 }
