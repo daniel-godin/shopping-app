@@ -29,8 +29,6 @@ export function NavBar() {
 export function MainContent() {
   return (
     <main>
-      <h1>Shopping List:</h1>
-      <p>The point of this app is to make shopping lists easier, save you money, and make shopping a less painful experience</p>
       <ShoppingList />
     </main>
   )

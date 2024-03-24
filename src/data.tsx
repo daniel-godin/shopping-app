@@ -12,7 +12,13 @@ export const tempShoppingArray = [
 
 ]
 
-export const shoppingListData = [
+interface Item {
+    id: number;
+    description: string;
+    open: boolean;
+}
+
+export const shoppingListData: Item[] = [
     // {
     //     id: "Item ID",
     //     description: "Description of the item",
@@ -33,7 +39,7 @@ export const shoppingListData = [
     {
         id: 1,
         description: "Bananas",
-        open: true, // Change Key Later.
+        open: false, // Change Key Later.
     },
     {
         id: 2,
@@ -43,7 +49,7 @@ export const shoppingListData = [
     {
         id: 3,
         description: "Donuts",
-        open: true, // Change Key Later.
+        open: false, // Change Key Later.
     },
     {
         id: 4,
@@ -53,7 +59,7 @@ export const shoppingListData = [
     {
         id: 5,
         description: "Fanta",
-        open: true, // Change Key Later.
+        open: false, // Change Key Later.
     },
     {
         id: 6,
@@ -68,7 +74,7 @@ export const shoppingListData = [
     {
         id: 8,
         description: "Igloos",
-        open: true, // Change Key Later.
+        open: false, // Change Key Later.
     },
     
 ]
