@@ -1,18 +1,30 @@
 import './App.css'
-import './shopping-list'
 import ShoppingList from './shopping-list'
 
+
+import { auth } from './firebase'
 import { AuthForm } from './auth'
+
+import { onAuthStateChanged } from 'firebase/auth'
 
 
 export default function App() {
   return (
     <>
-      <NavBar />
-      <MainContent />
-      <Footer />
+        <UI />
     </>
   )
+}
+
+export function UI() {
+    return (
+        <>
+            <NavBar />
+            <MainContent />
+            <Footer />
+        </>
+
+    )
 }
 
 export function NavBar() {
@@ -28,13 +40,11 @@ export function NavBar() {
 }
 
 export function MainContent() {
-
-  return (
-    <main>
-      <ShoppingList />
-      <AuthForm />
-    </main>
-  )
+    return (
+        <main>
+            <ShoppingList />
+        </main>
+    )
 }
 
 export function Footer() {
