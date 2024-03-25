@@ -1,13 +1,10 @@
 import { auth } from "./firebase"
 
-
-
-
-
-
-
-
-
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+} from 'firebase/auth'
 
 
 export function AuthForm() {
@@ -34,3 +31,29 @@ export function AuthForm() {
 
     )
 }
+
+// if (window.location.hostname === 'localhost') {
+//     connectAuthEmulator(auth, 'http://127.0.0.1:9099');
+// }
+
+// createUserWithEmailAndPassword(auth, email, password)
+//     .then((userCredential) => {
+//         // Signed Up
+//         const user = userCredential.user;
+//         // ...
+//     })
+//     .catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+// });
+
+// signInWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+// });
