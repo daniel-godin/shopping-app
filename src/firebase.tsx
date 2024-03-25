@@ -1,4 +1,4 @@
-import { app } from "./firebase-config";
+import { app } from "../firebase-config";
 import { 
     getAuth,
     connectAuthEmulator,

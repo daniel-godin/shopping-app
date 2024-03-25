@@ -49,7 +49,7 @@ export const shoppingListData: Item[] = [
     {
         id: 3,
         description: "Donuts",
-        open: false, // Change Key Later.
+        open: true, // Change Key Later.
     },
     {
         id: 4,
@@ -64,7 +64,7 @@ export const shoppingListData: Item[] = [
     {
         id: 6,
         description: "Gardetos",
-        open: true, // Change Key Later.
+        open: false, // Change Key Later.
     },
     {
         id: 7,
