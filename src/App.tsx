@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import './App.css'
 import ShoppingList from './shopping-list'
 
@@ -9,6 +11,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 
 
 export default function App() {
+
   return (
     <>
         <UI />
@@ -43,6 +46,7 @@ export function MainContent() {
     return (
         <main>
             <ShoppingList />
+            <AuthForm />
         </main>
     )
 }

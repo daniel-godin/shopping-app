@@ -16,6 +16,7 @@ export default function ShoppingList() {
 
 export function OpenShoppingList() {
     const open = shoppingListData.filter((el) => el.open === true);
+    console.log("open:", open);
     const openItems = open.map(item =>
         <li key={item.id}>
             <p>{item.description}</p>

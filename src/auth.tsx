@@ -11,25 +11,91 @@ import {
     signOut,
   } from 'firebase/auth';
 
-// if (window.location.hostname === 'localhost') {
-// connectAuthEmulator(auth, 'http://127.0.0.1:9099');
-// }
+if (window.location.hostname === '127.0.0.1') {
+    connectAuthEmulator(auth, 'http://127.0.0.1:9099');
+    console.log('connectAuthEmulator triggered');
+}
 
-// const emailInput = document.getElementById('email');
-// const passwordInput = document.getElementById('password');
-// const signInButton = document.getElementById('btnSignIn');
-// const signUpButton = document.getElementById('btnSignUp');
+
 // const passwordResetButton = document.getElementById('btnPasswordReset');
 
 // const signInStatus = document.getElementById('signInStatus');
 // const accountDetails = document.getElementById('accountDetails');
 
-// export function Auth() {
+export function Auth() {
 
 
-// }
+}
 
 export function AuthForm() {
+    function handleSignUp(e) {
+        e.preventDefault();
+        console.log('handleSignUp function triggered');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const signUpButton = document.getElementById('btnSignUp');
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        if (email.length < 4) {
+          alert('Please enter an email address.');
+          return;
+        }
+        if (password.length < 6) {
+          alert('Please enter a password.');
+          return;
+        }
+        // Create user with email and pass.
+        createUserWithEmailAndPassword(auth, email, password).catch(function (error) {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        });
+    }
+
+    function toggleSignIn(e) {
+        e.preventDefault();
+
+        const signInButton = document.getElementById('btnSignIn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        console.log('toggleSignIn button clicked');
+        if (auth.currentUser) {
+        signOut(auth);
+        } else {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        if (email.length < 4) {
+            alert('Please enter an email address.');
+            return;
+        }
+        if (password.length < 4) {
+            alert('Please enter a password.');
+            return;
+        }
+        // Sign in with email and pass.
+        signInWithEmailAndPassword(auth, email, password).catch(function (error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+            } else {
+            alert(errorMessage);
+            }
+            console.log(error);
+            signInButton.disabled = false;
+        });
+        }
+        signInButton.disabled = true;
+    }
+
 
     return (
         <>
@@ -41,8 +107,8 @@ export function AuthForm() {
                 <label for='password'>Enter Your Password:
                     <input type="password" name="password" id="password"></input>
                 </label>
-                <button type='submit' id="btnSignIn">Sign In</button>
-                <button type='submit' id="btnSignUp">Sign Up</button>
+                <button onClick={toggleSignIn}  type='submit' id="btnSignIn">Sign In</button>
+                <button onClick={handleSignUp} type='submit' id="btnSignUp">Sign Up</button>
                 <p id='signInStatus'></p>
             </form>
         </>
@@ -51,64 +117,11 @@ export function AuthForm() {
 }
 
 // // Handles the sign in button press.
-// function toggleSignIn() {
-//     if (auth.currentUser) {
-//       signOut(auth);
-//     } else {
-//       const email = emailInput.value;
-//       const password = passwordInput.value;
-//       if (email.length < 4) {
-//         alert('Please enter an email address.');
-//         return;
-//       }
-//       if (password.length < 4) {
-//         alert('Please enter a password.');
-//         return;
-//       }
-//       // Sign in with email and pass.
-//       signInWithEmailAndPassword(auth, email, password).catch(function (error) {
-//         // Handle Errors here.
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         if (errorCode === 'auth/wrong-password') {
-//           alert('Wrong password.');
-//         } else {
-//           alert(errorMessage);
-//         }
-//         console.log(error);
-//         signInButton.disabled = false;
-//       });
-//     }
-//     signInButton.disabled = true;
-//   }
+
 
 // /**
 //  * Handles the sign up button press.
 //  */
-// function handleSignUp() {
-//     const email = emailInput.value;
-//     const password = passwordInput.value;
-//     if (email.length < 4) {
-//       alert('Please enter an email address.');
-//       return;
-//     }
-//     if (password.length < 6) {
-//       alert('Please enter a password.');
-//       return;
-//     }
-//     // Create user with email and pass.
-//     createUserWithEmailAndPassword(auth, email, password).catch(function (error) {
-//       // Handle Errors here.
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       if (errorCode == 'auth/weak-password') {
-//         alert('The password is too weak.');
-//       } else {
-//         alert(errorMessage);
-//       }
-//       console.log(error);
-//     });
-// }
 
 // onAuthStateChanged(auth, function (user) {
 //     if (user) {
@@ -129,7 +142,6 @@ export function AuthForm() {
 // })
 
 // signInButton.addEventListener('click', toggleSignIn, false);
-// signUpButton.addEventListener('click', handleSignUp, false);
+
 // verifyEmailButton.addEventListener('click', sendVerificationEmailToUser, false);
 // passwordResetButton.addEventListener('click', sendPasswordReset, false);
-
