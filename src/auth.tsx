@@ -18,7 +18,6 @@ if (window.location.hostname === '127.0.0.1') {
 onAuthStateChanged(auth, function (user) {
     if (user) {
         // User is signed in.
-        console.log("User:", user);
         const signInStatus = document.getElementById('signInStatus');
         const signInButton = document.getElementById('btnSignIn');
         const displayName = user.displayName;

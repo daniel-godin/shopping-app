@@ -1,5 +1,9 @@
 import { shoppingListData } from './data.tsx';
 
+import { randomIdGenerator } from './tools.tsx';
+
+
+
 
 
 export default function ShoppingList() {
@@ -13,6 +17,12 @@ export default function ShoppingList() {
         </>
     )
 }
+
+export function createShoppingItem() {
+    const id = randomIdGenerator();
+    console.log("ID: ", typeof(id), id);
+}
+
 
 export function OpenShoppingList() {
     const open = shoppingListData.filter((el) => el.open === true);
