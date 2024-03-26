@@ -28,12 +28,14 @@ export function Auth() {
 }
 
 export function AuthForm() {
+
+    // Handles the sign in button press.
     function handleSignUp(e) {
         e.preventDefault();
-        console.log('handleSignUp function triggered');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const signUpButton = document.getElementById('btnSignUp');
+        
         const email = emailInput.value;
         const password = passwordInput.value;
         if (email.length < 4) {
@@ -58,14 +60,14 @@ export function AuthForm() {
         });
     }
 
+    // Handles the sign up button press.
     function toggleSignIn(e) {
         e.preventDefault();
 
-        const signInButton = document.getElementById('btnSignIn');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
+        const signInButton = document.getElementById('btnSignIn');
 
-        console.log('toggleSignIn button clicked');
         if (auth.currentUser) {
         signOut(auth);
         } else {
@@ -107,8 +109,8 @@ export function AuthForm() {
                 <label for='password'>Enter Your Password:
                     <input type="password" name="password" id="password"></input>
                 </label>
-                <button onClick={toggleSignIn}  type='submit' id="btnSignIn">Sign In</button>
-                <button onClick={handleSignUp} type='submit' id="btnSignUp">Sign Up</button>
+                <button onClick={toggleSignIn}  type='button' id="btnSignIn">Sign In</button>
+                <button onClick={handleSignUp} type='button' id="btnSignUp">Sign Up</button>
                 <p id='signInStatus'></p>
             </form>
         </>
@@ -116,12 +118,6 @@ export function AuthForm() {
     )
 }
 
-// // Handles the sign in button press.
-
-
-// /**
-//  * Handles the sign up button press.
-//  */
 
 // onAuthStateChanged(auth, function (user) {
 //     if (user) {
@@ -140,8 +136,6 @@ export function AuthForm() {
 //     }
 //     // signInButton.disabled = false;
 // })
-
-// signInButton.addEventListener('click', toggleSignIn, false);
 
 // verifyEmailButton.addEventListener('click', sendVerificationEmailToUser, false);
 // passwordResetButton.addEventListener('click', sendPasswordReset, false);
