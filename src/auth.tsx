@@ -13,14 +13,32 @@ import {
 
 if (window.location.hostname === '127.0.0.1') {
     connectAuthEmulator(auth, 'http://127.0.0.1:9099');
-    console.log('connectAuthEmulator triggered');
+    console.log('connectAuthEmulator triggered'); // Keep this for now.  Good reminder.
 }
+
+onAuthStateChanged(auth, function (user) {
+    if (user) {
+        // User is signed in.
+        console.log("User:", user);
+        const signInStatus = document.getElementById('signInStatus');
+        const signInButton = document.getElementById('btnSignIn');
+        const displayName = user.displayName;
+        const email = user.email;
+        // const emailVerified = user.emailVerified;
+        const uid = user.uid;
+        // const providerData = user.providerData;
+        signInStatus.textContent = 'Signed In:  ' + displayName;
+        signInButton.textContent = "Success!  Signed In!"
+        signInButton.textContent = 'Sign Out';
+    } else {
+        signInStatus.textContent = 'Signed Out';
+    }
+    // signInButton.disabled = false;
+})
 
 
 // const passwordResetButton = document.getElementById('btnPasswordReset');
 
-// const signInStatus = document.getElementById('signInStatus');
-// const accountDetails = document.getElementById('accountDetails');
 
 export function Auth() {
 
@@ -111,7 +129,7 @@ export function AuthForm() {
                 </label>
                 <button onClick={toggleSignIn}  type='button' id="btnSignIn">Sign In</button>
                 <button onClick={handleSignUp} type='button' id="btnSignUp">Sign Up</button>
-                <p id='signInStatus'></p>
+                <p id='signInStatusForm'></p>
             </form>
         </>
 
@@ -119,23 +137,7 @@ export function AuthForm() {
 }
 
 
-// onAuthStateChanged(auth, function (user) {
-//     if (user) {
-//         // User is signed in.
-//         const displayName = user.displayName;
-//         const email = user.email;
-//         // const emailVerified = user.emailVerified;
-//         const uid = user.uid;
-//         // const providerData = user.providerData;
-//         signInStatus.textContent = 'Signed In:  ' + displayName;
-//         signInButton.textContent = 'Sign Out';
-//     } else {
-//         signInStatus.textContent = 'Signed Out';
-//         signInStatus.textContent = "Sign In";
-//         // accountDetails.textContent = 'null';
-//     }
-//     // signInButton.disabled = false;
-// })
+
 
 // verifyEmailButton.addEventListener('click', sendVerificationEmailToUser, false);
 // passwordResetButton.addEventListener('click', sendPasswordReset, false);

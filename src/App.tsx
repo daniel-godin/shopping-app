@@ -11,6 +11,14 @@ import { onAuthStateChanged } from 'firebase/auth'
 
 
 export default function App() {
+    onAuthStateChanged(auth, (user => {
+        if (user) {
+            const uid = user.uid;
+            console.log('user logged in, triggered from App()');
+        } else {
+            console.log('user not logged in, triggered from App()');
+        }
+    }))
 
   return (
     <>
@@ -31,15 +39,23 @@ export function UI() {
 }
 
 export function NavBar() {
-  return (
-    <nav id='navBar'>
-      <p>Link 1</p>
-      <p>Link 2</p>
-      <p>Link 3</p>
-      <p>Link 4</p>
-      <p>Link 5</p>
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const signInStatus = document.getElementById('signInStatus');
+            signInStatus.textContent = `Signed In:  ${user.displayName}`;
+        }
+    })
+
+
+    return (
+        <nav id='navBar'>
+        <p>Link 1</p>
+        <p>Link 2</p>
+        <p>Link 3</p>
+        <p>Link 4</p>
+        <p id='signInStatus'>Link 5</p>
     </nav>
-  )
+    )
 }
 
 export function MainContent() {
