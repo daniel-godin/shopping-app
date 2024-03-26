@@ -34,7 +34,6 @@ export function UI() {
             <MainContent />
             <Footer />
         </>
-
     )
 }
 
@@ -43,9 +42,10 @@ export function NavBar() {
         if (user) {
             const signInStatus = document.getElementById('signInStatus');
             signInStatus.textContent = `Signed In:  ${user.displayName}`;
+        } else {
+            signInStatus.textContent = `Signed Out`;
         }
     })
-
 
     return (
         <nav id='navBar'>
@@ -53,7 +53,7 @@ export function NavBar() {
         <p>Link 2</p>
         <p>Link 3</p>
         <p>Link 4</p>
-        <p id='signInStatus'>Link 5</p>
+        <p id='signInStatus'></p>
     </nav>
     )
 }

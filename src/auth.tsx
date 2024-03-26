@@ -3,10 +3,9 @@ import { auth } from "./firebase"
 import {
     connectAuthEmulator,
     createUserWithEmailAndPassword,
-    getAuth,
     onAuthStateChanged,
-    sendEmailVerification,
-    sendPasswordResetEmail,
+    // sendEmailVerification,
+    // sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signOut,
   } from 'firebase/auth';
@@ -30,20 +29,9 @@ onAuthStateChanged(auth, function (user) {
         signInStatus.textContent = 'Signed In:  ' + displayName;
         signInButton.textContent = "Success!  Signed In!"
         signInButton.textContent = 'Sign Out';
-    } else {
-        signInStatus.textContent = 'Signed Out';
     }
     // signInButton.disabled = false;
 })
-
-
-// const passwordResetButton = document.getElementById('btnPasswordReset');
-
-
-export function Auth() {
-
-
-}
 
 export function AuthForm() {
 
@@ -116,7 +104,6 @@ export function AuthForm() {
         signInButton.disabled = true;
     }
 
-
     return (
         <>
             <h2>Please Sign In or Sign Up To Use This App:</h2>
@@ -132,12 +119,5 @@ export function AuthForm() {
                 <p id='signInStatusForm'></p>
             </form>
         </>
-
-    )
+    );
 }
-
-
-
-
-// verifyEmailButton.addEventListener('click', sendVerificationEmailToUser, false);
-// passwordResetButton.addEventListener('click', sendPasswordReset, false);
